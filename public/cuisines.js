@@ -1,0 +1,17 @@
+export const cuisines = [
+  "Turkish",
+  "Chinese",
+  "Italian",
+  "French",
+  "Mexican",
+  "Spanish",
+  "Greek",
+  "American",
+  "Indian",
+  "Japanese",
+  "Korean",
+  "Thai",
+  "Vietnamese",
+  "German",
+  "Nepalian, Tibetian",
+];
