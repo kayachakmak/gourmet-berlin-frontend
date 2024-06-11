@@ -2,10 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import CommentForm from "../CommentForm/CommentForm";
 import Comments from "../Comments/Comments";
-import { useSession } from "next-auth/react";
+import { useUser } from "../UserContext/UserContext";
 
-export default function RestaurantDetails({ restaurant, comments }) {
-  // const { data: session } = useSession();
+export default function RestaurantDetails({ restaurant, comments, onHandleChange }) {
+  const { user } = useUser();
 
   return (
     <div className="grid w-3/4 mx-auto mt-2 bg-gray-100 rounded-lg shadow-md ">
@@ -71,8 +71,8 @@ export default function RestaurantDetails({ restaurant, comments }) {
         Get the directions on Google Maps
       </Link>
       <div className="mt-10">
-        <Comments comments={comments} />
-        {/* {session && <CommentForm />} */}
+        <Comments comments={comments} onHandleChange={onHandleChange} />
+      {user && <CommentForm onHandleChange={onHandleChange} />}
       </div>
     </div>
   );

@@ -1,50 +1,50 @@
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { mutate } from "swr";
 import Image from "next/image";
 import { getCurrentDate } from "@/utils/utils";
+import { useUser } from "../UserContext/UserContext";
+import httpClient from "@/pages/httpClient";
 
-export default function Comments({ comments }) {
+export default function Comments({ comments, onHandleChange }) {
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editedComment, setEditedComment] = useState("");
 
   const router = useRouter();
-  const { id } = router.query;
-  const { data: session } = useSession();
+  const { user } = useUser();
 
   async function handleDelete(ID) {
     const confirmDelete = window.confirm("Do you want to delete this comment?");
 
     if (confirmDelete) {
-      const response = await fetch(`/api/comments/${ID}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        mutate(`/api/restaurants/${id}`);
+      try{
+        const response = await httpClient.delete(`//localhost:5000/comments`,{ data: { id: ID } })
+        
+        if (response.ok)  {
+          onHandleChange()
+        
+        }
+
+      }catch(err){
+        alert(err)
       }
     }
   }
+
   function handleEdit(comment) {
-    setEditingCommentId(comment._id);
+    setEditingCommentId(comment.id);
     setEditedComment(comment.comment);
   }
 
   async function handleSave(ID) {
     const editdate = getCurrentDate();
-    const update = { comment: editedComment, editDate: editdate };
 
-    const response = await fetch(`/api/comments/${ID}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(update),
-    });
-
+    try{
+      const response =  await httpClient.put("//localhost:5000/comments", { id: ID, comment:editedComment, editDate:editdate})
     if (response.ok) {
-      mutate(`/api/restaurants/${id}`);
+      onHandleChange()
       setEditingCommentId(null);
+    }}catch(err){
+      alert(err)
     }
   }
 
@@ -52,10 +52,10 @@ export default function Comments({ comments }) {
     <ul className="list-none p-0">
       {comments.map((comment) => (
         <li
-          key={comment._id}
+          key={comment.id}
           className="bg-purple-400 text-black rounded-lg my-4 overflow-hidden relative"
         >
-          {editingCommentId === comment._id ? (
+          {editingCommentId === comment.id ? (
             <div className="p-4">
               <textarea
                 className="w-full p-2 text-black"
@@ -67,7 +67,7 @@ export default function Comments({ comments }) {
               <div className="flex justify-between mt-2 ">
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => handleSave(comment._id)}
+                  onClick={() => handleSave(comment.id)}
                 >
                   Save
                 </button>
@@ -83,18 +83,18 @@ export default function Comments({ comments }) {
             <div className="flex items-start space-x-4 p-4">
               <img
                 className="w-12 h-12 rounded-full"
-                src={comment.userimage}
-                alt={comment._id}
+                src={comment?.userimage}
+                alt={comment?.userimage}
               />
               <div className="flex-1 mt-2">
-                <strong>@{comment.username}</strong> commented on {comment.date}
+                <strong>@{comment.name}</strong> commented on {comment.date}
                 <p className="italic">`{comment.comment}`</p>
                 {comment.editDate && (
                   <small className="absolute bottom-0 right-2">
                     Edited on {comment.editDate}
                   </small>
                 )}
-                {comment.username === session?.user.name && (
+                {comment.name === user?.name && (
                   <div className="absolute top-0 right-2 flex space-x-2">
                     <button
                       className="p-1"
@@ -111,7 +111,7 @@ export default function Comments({ comments }) {
                     </button>
                     <button
                       className="p-1"
-                      onClick={() => handleDelete(comment._id)}
+                      onClick={() => handleDelete(comment.id)}
                     >
                       <Image
                         src="https://i.ibb.co/F85nyhC/bin.png"
