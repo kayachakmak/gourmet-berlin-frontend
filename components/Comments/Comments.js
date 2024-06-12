@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { getCurrentDate } from "@/utils/utils";
 import { useUser } from "../UserContext/UserContext.js";
-import httpClient from "@/pages/httpClient";
+import httpClient from "@/utils/httpClient.js";
 
 export default function Comments({ comments }) {
   const [editingCommentId, setEditingCommentId] = useState(null);

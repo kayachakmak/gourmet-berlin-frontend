@@ -1,11 +1,15 @@
 // src/components/RegisterForm.js
 import React, { useState } from 'react';
-import httpClient from './httpClient';
+import httpClient from '@/utils/httpClient';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  function handleClose(){
+    window.location.href="/"
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

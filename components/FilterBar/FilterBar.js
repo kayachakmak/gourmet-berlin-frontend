@@ -1,6 +1,4 @@
 import { cuisines } from "@/public/cuisines";
-import Link from "next/link";
-// import { useSession } from "next-auth/react";
 
 export default function FilterBar({
   type,
@@ -10,7 +8,6 @@ export default function FilterBar({
   onAnimalChange,
   onChildChange,
 }) {
-  // const { data: session } = useSession();
 
   return (
     <div className="flex items-center justify-between p-2 bg-gray-200 rounded-lg mt-2 pr-0">
@@ -45,14 +42,6 @@ export default function FilterBar({
           Animal Friendly
         </label>
       </div>
-      {/* {session && (
-        <Link
-          className="text-white mb-1  hidden lg:max-2xl:block bg-red-400 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-          href="/create"
-        >
-          Add a New Restaurant
-        </Link>
-      )} */}
     </div>
   );
 }

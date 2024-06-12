@@ -4,7 +4,7 @@ import CommentForm from "../CommentForm/CommentForm";
 import Comments from "../Comments/Comments";
 import { useUser } from "../UserContext/UserContext.js";
 
-export default function RestaurantDetails({ restaurant, comments, onHandleChange }) {
+export default function RestaurantDetails({ restaurant, comments }) {
   const { user } = useUser();
 
   return (
@@ -71,8 +71,8 @@ export default function RestaurantDetails({ restaurant, comments, onHandleChange
         Get the directions on Google Maps
       </Link>
       <div className="mt-10">
-        <Comments comments={comments} onHandleChange={onHandleChange} />
-      {user && <CommentForm onHandleChange={onHandleChange} />}
+        <Comments comments={comments} />
+      {user && <CommentForm/>}
       </div>
     </div>
   );

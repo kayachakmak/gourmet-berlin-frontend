@@ -1,5 +1,5 @@
-import httpClient from "@/pages/httpClient.js";
 import { useUser } from "../UserContext/UserContext.js";
+import httpClient from "@/utils/httpClient.js";
 
 export default function Profile() {
   const {user}=useUser();

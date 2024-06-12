@@ -1,6 +1,6 @@
 // src/components/RegisterForm.js
 import React, { useState } from 'react';
-import httpClient from './httpClient';
+import httpClient from '@/utils/httpClient';
 
 const Login = () => {
   const [email, setEmail] = useState('');
