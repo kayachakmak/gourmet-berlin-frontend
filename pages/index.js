@@ -22,7 +22,7 @@ export default function Home() {
   const queryString = params.toString();
 
   const { data, isLoading } = useSWR(
-    `https://gourmet-berlin-bce140ecdfc9.herokuapp.com/${queryString}` 
+    `${process.env.NEXT_PUBLIC_API_URL}${queryString}` 
   );
 
   if (isLoading) return <h1>Loading...</h1>;
