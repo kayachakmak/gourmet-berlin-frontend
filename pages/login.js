@@ -18,7 +18,7 @@ const Login = () => {
         password
       });
       if (response.ok) {
-        console.log('Login successful', response.message);
+        alert("Succesfully logged in!");
         window.location.href="/"
       }
       // Redirect or display success message
