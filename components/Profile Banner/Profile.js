@@ -1,8 +1,9 @@
-import httpClient from "@/pages/httpClient";
+import httpClient from "@/pages/httpClient.js";
 import { useUser } from "../UserContext/UserContext.js";
 
 export default function Profile() {
   const {user}=useUser();
+  console.log(user)
 
   async function logout(){
     try{

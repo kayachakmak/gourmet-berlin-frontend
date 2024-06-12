@@ -5,7 +5,7 @@ import { getCurrentDate } from "@/utils/utils";
 import { useUser } from "../UserContext/UserContext.js";
 import httpClient from "@/pages/httpClient";
 
-export default function Comments({ comments, onHandleChange }) {
+export default function Comments({ comments }) {
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editedComment, setEditedComment] = useState("");
 
@@ -17,12 +17,8 @@ export default function Comments({ comments, onHandleChange }) {
 
     if (confirmDelete) {
       try{
-        const response = await httpClient.delete(`//localhost:5000/comments`,{ data: { id: ID } })
+        const response = await httpClient.delete(`/comments`,{ data: { id: ID } })
         
-        if (response.ok)  {
-          onHandleChange()
-        
-        }
 
       }catch(err){
         alert(err)
@@ -39,9 +35,8 @@ export default function Comments({ comments, onHandleChange }) {
     const editdate = getCurrentDate();
 
     try{
-      const response =  await httpClient.put("//localhost:5000/comments", { id: ID, comment:editedComment, editDate:editdate})
+      const response =  await httpClient.put("/comments", { id: ID, comment:editedComment, editDate:editdate})
     if (response.ok) {
-      onHandleChange()
       setEditingCommentId(null);
     }}catch(err){
       alert(err)

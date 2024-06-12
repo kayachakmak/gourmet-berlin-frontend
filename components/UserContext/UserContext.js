@@ -16,7 +16,8 @@ export const UserProvider = ({ children }) => {
     const checkSession = async () => {
       try {
         const response = await httpClient.get('/@me');
-        setUser(response.data.user);
+        console.log(response.data)
+        setUser(response.data);
       } catch (error) {
         setUser(null);
       } 

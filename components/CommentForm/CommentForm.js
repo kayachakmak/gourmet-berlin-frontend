@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import { useSession } from "next-auth/react";
 import { getCurrentDate } from "@/utils/utils";
+import { useUser } from "../UserContext/UserContext";
+import httpClient from "@/pages/httpClient";
 
 export default function CommentForm() {
-  const { data: session } = useSession();
   const router = useRouter();
   const { id } = router.query;
+
+  const {user}= useUser()
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -15,22 +17,12 @@ export default function CommentForm() {
     event.target.reset();
     const date = getCurrentDate();
     data.restaurantID = id;
-    data.username = session.user.name;
+    data.name = user.name;
     data.date = date;
-    data.userimage = session.user.image;
 
     try {
-      const response = await fetch("/api/comments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await httpClient.post("/comments",data)
 
-      if (response.ok) {
-        mutate(`/api/restaurants/${id}`);
-      }
     } catch (err) {
       console.log(err);
     }

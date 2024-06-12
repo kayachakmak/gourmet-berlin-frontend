@@ -21,7 +21,7 @@ export default function Home() {
 
   const queryString = params.toString();
 
-  const { data, isLoading, error } = useSWR(
+  const { data, isLoading } = useSWR(
     `http://127.0.0.1:5000?${queryString}` 
   );
 
