@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CommentForm from "../CommentForm/CommentForm";
 import Comments from "../Comments/Comments";
-import { useUser } from "../UserContext/UserContext";
+import { useUser } from "../UserContext/UserContext.js";
 
 export default function RestaurantDetails({ restaurant, comments, onHandleChange }) {
   const { user } = useUser();

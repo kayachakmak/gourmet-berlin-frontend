@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 import { getCurrentDate } from "@/utils/utils";
-import { useUser } from "../UserContext/UserContext";
+import { useUser } from "../UserContext/UserContext.js";
 import httpClient from "@/pages/httpClient";
 
 export default function Comments({ comments, onHandleChange }) {

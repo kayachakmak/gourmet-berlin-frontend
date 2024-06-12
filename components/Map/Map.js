@@ -6,7 +6,6 @@ import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import RestaurantPopuP from "../RestaurantPopUp/RestaurantPopUp";
 import { Fragment } from "react";
-import { useSession } from "next-auth/react";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -16,17 +15,8 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function Map({ restaurants }) {
-  // const { data: session } = useSession();
   return (
     <>
-      {/* {session && (
-        <Link
-          className="text-white mb-1  lg:max-2xl:hidden bg-red-400 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 absolute right-0 z-20"
-          href="/create"
-        >
-          + New Restaurant
-        </Link>
-      )} */}
       <MapContainer
         className="mt-2 relative z-0"
         center={[52.52, 13.405]}
