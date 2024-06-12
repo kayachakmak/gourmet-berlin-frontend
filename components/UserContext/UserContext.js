@@ -1,6 +1,6 @@
 // src/userContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import httpClient from '@/pages/httpClient';
+import httpClient from '@/utils/httpClient';
 
 // Create a context for the user
 const UserContext = createContext();

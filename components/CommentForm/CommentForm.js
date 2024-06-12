@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
-import { mutate } from "swr";
 import { getCurrentDate } from "@/utils/utils";
 import { useUser } from "../UserContext/UserContext";
-import httpClient from "@/pages/httpClient";
+import httpClient from "@/utils/httpClient";
 
 export default function CommentForm() {
   const router = useRouter();
