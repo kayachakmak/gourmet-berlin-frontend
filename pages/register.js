@@ -21,10 +21,8 @@ const RegisterForm = () => {
       });
       alert("Account Created!")
       window.location.href="/"
-      // Redirect or display success message
     } catch (error) {
       console.error('Error during registration', error);
-      // Handle error, display error message
     }
   };
 

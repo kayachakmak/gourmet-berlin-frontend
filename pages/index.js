@@ -22,7 +22,7 @@ export default function Home() {
   const queryString = params.toString();
 
   const { data, isLoading } = useSWR(
-    `http://127.0.0.1:5000?${queryString}` 
+    `https://gourmet-berlin-bce140ecdfc9.herokuapp.com/${queryString}` 
   );
 
   if (isLoading) return <h1>Loading...</h1>;
