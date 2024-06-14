@@ -1,4 +1,3 @@
-// src/components/RegisterForm.js
 import React, { useState } from 'react';
 import httpClient from '@/utils/httpClient';
 
@@ -17,14 +16,13 @@ const Login = () => {
         email,
         password
       });
-      if (response.ok) {
+      if (response.status==200) {
         alert("Succesfully logged in!");
         window.location.href="/"
-      }
-      // Redirect or display success message
+      }else{alert.response.status}
     } catch (error) {
       console.error('Error during registration', error);
-      // Handle error, display error message
+      alert(error)
     }
   };
 

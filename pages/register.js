@@ -19,8 +19,12 @@ const RegisterForm = () => {
         email,
         password
       });
+      if (response.status==201){
       alert("Account Created!")
-      window.location.href="/"
+      window.location.href="/"}
+      else{
+        alert.response.staus
+      }
     } catch (error) {
       console.error('Error during registration', error);
     }

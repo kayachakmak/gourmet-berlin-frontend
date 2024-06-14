@@ -6,7 +6,7 @@ export default function RestaurantDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading } = useSWR(` http://127.0.0.1:5000/${id}`);
+  const { data, isLoading } = useSWR(` https://gourmet-berlin-bce140ecdfc9.herokuapp.com/${id}`);
   console.log(data)
 
   if (isLoading) <h1>Loading...</h1>;
