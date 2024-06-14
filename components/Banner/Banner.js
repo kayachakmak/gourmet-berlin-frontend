@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Banner() {
   return (
-    <div className="bg-banner flex justify-center items-center md:h-20">
+    <div className="bg-banner flex justify-center items-center md:h-50">
       <Image
         className="h-full object-contain"
         src="https://i.ibb.co/YBpQRrj/Capture.png"
