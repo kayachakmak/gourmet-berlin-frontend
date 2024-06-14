@@ -19,10 +19,11 @@ export default function Home() {
   if (isAnimalFriendly) params.append("animalFriendly", "true");
   if (isChildFriendly) params.append("childFriendly", "true");
 
-  const queryString = params.toString();
+  const queryString = params.toString()
+  console.log(queryString)
 
   const { data, isLoading } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}${queryString}` 
+    `${process.env.NEXT_PUBLIC_API_URL}?${queryString}` 
   );
 
   if (isLoading) return <h1>Loading...</h1>;
